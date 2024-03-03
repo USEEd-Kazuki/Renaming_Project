@@ -1,25 +1,22 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "RenameUtility.h"
 #include "EditorUtilityLibrary.h"
 
-#pragma region RenameSelectedAssets
-
 void URenameUtility::RenameSelectedAssets(FString SearchPattern, FString ReplacePattern, ESearchCase::Type SearchCase)
 {
-	// ‘¶İƒ`ƒFƒbƒN
+	// å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 	if (SearchPattern.IsEmpty() || SearchPattern.Equals(ReplacePattern, SearchCase)) 
 	{
 		return;
 	}
 
-	// ‘I‘ğ’†‚ÌƒAƒZƒbƒg‚ğæ“¾
+	// é¸æŠä¸­ã®ã‚¢ã‚»ãƒƒãƒˆã‚’å–å¾—
 	TArray<UObject*> SelectedObjects = UEditorUtilityLibrary::GetSelectedAssets();
 
 	uint32 Counter = 0;
 
-	// –¼‘O•ÏŠ·‚ª•K—v‚©Šm”F
+	// åå‰å¤‰æ›ãŒå¿…è¦ã‹ç¢ºèª
 	for (UObject* SelectedObject : SelectedObjects) 
 	{
 		if (ensure(SelectedObject)) 
@@ -36,10 +33,6 @@ void URenameUtility::RenameSelectedAssets(FString SearchPattern, FString Replace
 
 	GiveFeedback(TEXT("Renamed"), Counter);
 }
-
-#pragma endregion
-
-#pragma region Helper
 
 void URenameUtility::PrintToScreen(FString Message, FColor Color)
 {
@@ -61,5 +54,3 @@ void URenameUtility::GiveFeedback(FString Method, uint32 Counter)
 	}
 	PrintToScreen(Message, Color);
 }
-
-#pragma endregion
